@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(){
-    int valores, soma, cont;
+    int valores, cont;
     float media;
 
     printf("Digite valores p/ fazer a media (digite 0 para parar de inserir): ");
@@ -15,6 +15,8 @@ int main(){
         media = media + valores;    
         cont++;
     }
+    cont--;
+    printf("Soma dos valores digitados: %.0f\n", media);
     media = media / cont;
     printf("Numero de valores digitados: %d\n", cont);
     printf("Media dos valores: %.2f\n", media);
