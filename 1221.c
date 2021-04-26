@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 int main(){
     unsigned long long int  x;
@@ -17,11 +18,11 @@ int main(){
             puts("Prime");
             continue;
         }
-        for(i = 2; i <= x; i++){
+        for(i = 2; i <= sqrt(x); i++){
             if(x % i == 0) cont++;
             if(cont == 2) break;
         }
-        if(cont > 1){
+        if(cont >= 1){
             puts("Not Prime");
         }else puts("Prime");
 
