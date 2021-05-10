@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-float Delta(int a, int b, int c){
+float Delta(float a, float b, float c){
     float delta;
 
     delta = (b * b ) - (4 * a * c);
@@ -10,7 +10,7 @@ float Delta(int a, int b, int c){
 }
 
 
-float RaizX0(int a, int b) {
+float RaizX0(float a, float b) {
     float x0;
 
     x0 = -b / ( 2 * a );
@@ -19,7 +19,7 @@ float RaizX0(int a, int b) {
 }
 
 
-float RaizX1(int a, int b, float delta){
+float RaizX1(float a, float b, float delta){
     float x1;
 
     x1 = (-b + sqrt(delta)) / (2 * a );
@@ -28,7 +28,7 @@ float RaizX1(int a, int b, float delta){
 }
 
 
-float RaizX2(int a, int b, float delta){
+float RaizX2(float a, float b, float delta){
     float x2;
 
     x2 = (-b - sqrt(delta) ) / ( 2 * a );
@@ -38,7 +38,7 @@ float RaizX2(int a, int b, float delta){
 
 
 int main(){
-    int a, b, c;
+    float a, b, c;
     float delta, x0, x1, x2;
 
     printf("----------------------------------------\n");
