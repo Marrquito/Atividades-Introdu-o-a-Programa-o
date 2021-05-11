@@ -18,6 +18,7 @@ int main(){
             puts("Prime");
             continue;
         }
+        
         for(i = 2; i <= sqrt(x); i++){
             if(x % i == 0) cont++;
             if(cont == 2) break;
