@@ -115,7 +115,7 @@ int main(){
 
  
     puts("Reformulando questão...");
-    sleep(1);
+    sleep(2.5);
     puts("");
 
     // Questão 2;
