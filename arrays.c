@@ -194,8 +194,6 @@ int main(){
 
     ordenado = EhArrayOrdenado(array1, 10);
 
-    printf("ordenado : %d\n", ordenado);
-
     if(ordenado)
         puts("Array ordenado.");
     else puts("Array desordenado.");
