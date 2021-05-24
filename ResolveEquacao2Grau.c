@@ -2,11 +2,10 @@
 #include <math.h>
 
 int ResolveEquacao2Grau(float a, float b, float c, float *x0, float *x1, float *x2, float *delta){
-    if(a < 0){
+    if(a == 0){
         return -1;
     }
 
-    int delta;
     *delta = pow(b, 2) - 4 * a * c;
 
     if(*delta < 0 ) return -2;
