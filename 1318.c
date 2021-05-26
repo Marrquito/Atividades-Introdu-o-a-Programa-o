@@ -29,7 +29,7 @@ int main(){
             scanf("%d", &numBilhete[i]);
         }
         for(i = 0; i < pFest; i++){
-        aux[i] = 0;
+            aux[i] = 0;
         }
 
         OrdenaArray(numBilhete, pFest);
