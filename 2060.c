@@ -54,10 +54,10 @@ int main(){
         scanf("%d", &numbers[i]);
     }
 
-    printf("%d multiplo(s) de 2\n", EhMultiplo2(numbers, qtdNumbers));
-    printf("%d multiplo(s) de 3\n", EhMultiplo3(numbers, qtdNumbers));
-    printf("%d multiplo(s) de 4\n", EhMultiplo4(numbers, qtdNumbers));
-    printf("%d multiplo(s) de 5\n", EhMultiplo5(numbers, qtdNumbers));
+    printf("%d Multiplo(s) de 2\n", EhMultiplo2(numbers, qtdNumbers));
+    printf("%d Multiplo(s) de 3\n", EhMultiplo3(numbers, qtdNumbers));
+    printf("%d Multiplo(s) de 4\n", EhMultiplo4(numbers, qtdNumbers));
+    printf("%d Multiplo(s) de 5\n", EhMultiplo5(numbers, qtdNumbers));
 
     return 0;
 }
