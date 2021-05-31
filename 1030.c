@@ -22,7 +22,6 @@ int main(){
         scanf("%hu %hu", &people, &salto);
 
         printf("Case %hu: %hu\n", i+1, Viveu(people, salto)+1);
-
     }
 
     return 0;
