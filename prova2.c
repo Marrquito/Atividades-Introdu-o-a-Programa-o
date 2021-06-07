@@ -1,12 +1,20 @@
 #include <stdio.h>
 
-int main(){
-    int a, b;
+void Troca(int *i, int *j){
+    int *temp;
 
-    while(a >= 0, b >= 0){
-        printf("Digite a e b: ");
-        scanf("%d%d", &a, &b);
-    }
+    *temp = *i;
+    printf("%p\n", temp);
+    /* *i = *j;
+    *j = *temp; */
+}
+
+int main(){
+    int a = 2, b = 3;
+
+    printf("a = %d, b = %d\n", a, b);
+    Troca(&a, &b);
+    printf("a = %d, b = %d\n", a, b);
 
     return 0;
 }

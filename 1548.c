@@ -1,18 +1,17 @@
 #include <stdio.h>
 
-void OrdenaArray(int ar[], int size){
+void OrdenaArray(int ar[], int tamanaho){
     int i, j, cobaia;
-
-    for(i = 0; i < size; i++){
-        for(j = 0; j < size; j++){
-            if(ar[i] > ar[j]){
+    
+    for (i = 0; i < tamanaho; i++){
+        for (j = 0; j < tamanaho; j++){
+            if (ar[i] < ar[j]){
                 cobaia = ar[i];
                 ar[i] = ar[j];
                 ar[j] = cobaia;
             }
         }
     }
-
 }
 
 int main(){
