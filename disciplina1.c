@@ -36,7 +36,10 @@ void ApresentaMenu() {
                 "\n3 - Ver alunos cadastrados"
                 "\n4 - Cadastrar notas"
                 "\n5 - Ver tabela de notas completa"
-                "\n6 - Sair\n");
+                "\n6 - Gerar tabela de notas em Arquivo"
+                "\n7 - Salvar dados"
+                "\n8 - Carrega dados salvos"
+                "\n0 - Sair\n");
 }
 
 void cadastraDisciplina(char *disciplina, int *qtdAlunos){
@@ -66,6 +69,7 @@ void cadastraAluno(discentes aluno[], int alunos){
 }
 
 void mostraAluno(discentes aluno[], const char disciplina[], const int qtdAlunos){
+    int j = 10;
     for(int i = 0; i < 11; i++){
         printf("----------------------------------------------------\n");
         printf("Disciplina: %s\n", disciplina);
@@ -73,9 +77,9 @@ void mostraAluno(discentes aluno[], const char disciplina[], const int qtdAlunos
         printf("Matricula        NOME\n");
         printf("----------------------------------------------------\n");
         for(int i = 0; i < qtdAlunos; i++){
-            printf("%d        %s\n", aluno[i].matricula, aluno[i].name);
+            printf("%d           %s\n", aluno[i].matricula, aluno[i].name);
         }
-        printf("Timer: %d\"\n", i);
+        printf("Timer: %d\"\n", j--);
         sleep(1);
         system(COMMAND);
     }
@@ -116,26 +120,120 @@ void cadastraNota(discentes aluno[], int qtdAlunos){
 }
 
 void mostraNotas(discentes aluno[], const char disciplina[], const int qtdAlunos){
+    int j = 10;
     for(int i = 0; i < 11; i++){
         printf("--------------------------------------------------------------------------------------------------------------------------------\n");
         printf("Disciplina: %s\n", disciplina);
         printf("--------------------------------------------------------------------------------------------------------------------------------\n");
-        printf("Matricula\tNome\t\tNota 1\t\tNota 2\t\tNota 3\t\tRec\t\tMedia\t\tSituacao\n");
+        printf(" Matricula\tNome\t\t\tNota 1\tNota 2\tNota 3\t\tRec\tMedia\t\tSituacao\n");
         printf("--------------------------------------------------------------------------------------------------------------------------------\n");
         for(int i = 0; i < qtdAlunos; i++){
-            printf("%d\t\t%s\t\t%.1f\t\t%.1f\t\t%.1f\t\t%.1f\t\t%.1f\t\t%s\n", aluno[i].matricula, aluno[i].name, aluno[i].nota1, aluno[i].nota2, aluno[i].nota3, aluno[i].notaRec == -1 ? '-' : aluno[i].notaRec  ,aluno[i].media ,aluno[i].situacao ? "Aprovado" : "Reprovado" );
+            printf(" %d\t\t%s\t\t%.1f\t%.1f\t%.1f\t\t%.1f\t%.1f\t\t%s\n", aluno[i].matricula, aluno[i].name, aluno[i].nota1, aluno[i].nota2, aluno[i].nota3, aluno[i].notaRec == -1 ? '-' : aluno[i].notaRec  ,aluno[i].media ,aluno[i].situacao ? "Aprovado" : "Reprovado" );
         }
         printf("--------------------------------------------------------------------------------------------------------------------------------\n");
-        printf("Timer: %d\"\n", i);
+
+        printf("Timer: %d\"\n", j--);
         sleep(1);
         system(COMMAND);
     }
 }
 
+void RelatorioEmArquivo(const char *arq, const char disciplina[], discentes aluno[], const int qtdAlunos){
+    FILE *fp;
+    int i;
+    
+    fp = fopen(arq, "w");
+    if(fp == NULL){
+        printf("Erro ao criar o arquivo de relatorio \'%s\'\n", arq);
+        return;
+    }
+
+    fprintf(fp, "--------------------------------------------------------------------------------------------------------------------------------\n");
+    fprintf(fp, "Disciplina: %s\n", disciplina);
+    fprintf(fp, "--------------------------------------------------------------------------------------------------------------------------------\n");
+    fprintf(fp, " Matricula\tNome\t\tNota 1\tNota 2\tNota 3\t\tRec\t\tMedia\t\tSituacao\n");
+    fprintf(fp, "--------------------------------------------------------------------------------------------------------------------------------\n");
+    for(int i = 0; i < qtdAlunos; i++){
+        fprintf(fp, " %d\t\t%s\t\t%.1f\t\t%.1f\t\t%.1f\t\t\t%.1f\t\t%.1f\t\t\t%s\n", aluno[i].matricula, aluno[i].name, aluno[i].nota1, aluno[i].nota2, aluno[i].nota3, aluno[i].notaRec == -1 ? '-' : aluno[i].notaRec  ,aluno[i].media ,aluno[i].situacao ? "Aprovado" : "Reprovado" );
+    }
+    fprintf(fp, "--------------------------------------------------------------------------------------------------------------------------------\n");
+
+    if(fclose(fp) == 0){
+        puts("Relatorio criado com sucesso!");
+    }else puts("Nao foi possivel criar relatorio!");
+
+    sleep(1);
+}
+/* 
+void RemoveBarraN(char *str){
+    if (str[strlen(str)-1] == '\n'){
+        str[strlen(str)-1] = '\0';
+    }
+} */
+
+void SalvarDados(const discentes aluno[], const int qtdAlunos, char disciplina[]){
+    FILE *fp;
+    int i;
+
+    fp = fopen("notas.dat", "w");
+    if(fp == NULL){
+        printf("Erro ao criar arquivo de dados\n");
+        return;
+    }else{
+        printf("Arquivo de dados criado com sucesso!\n");
+    }
+
+    fprintf(fp, "%s\n", disciplina);
+    for(i = 0; i < qtdAlunos; i++){
+        fprintf(fp, "%d\n%s\n%f %f %f %f %f\n%d\n", aluno[i].matricula, aluno[i].name, aluno[i].nota1, 
+        aluno[i].nota2, aluno[i].nota3, aluno[i].media, aluno[i].notaRec, aluno[i].situacao);
+    }
+
+    if(fclose(fp) == 0) {
+        printf("Dados salvos com sucesso!\n");
+    }else{
+        printf("Erro ao salvar dados!");
+    }
+
+    sleep(1);
+}
+
+void CarregaDados(discentes aluno[], int *qtdAlunos, char disciplina[]){
+    FILE *fp;
+    char str[101];
+
+    fp = fopen("notas.dat", "r");
+    if(fp == NULL){
+        printf("Erro ao carregar dados\n");
+        return;
+    }
+    
+    fscanf(fp, "%[^\n]", disciplina);
+    while(1){
+        printf("aq %d\n", *qtdAlunos);
+        fscanf(fp, "%d%*c", &aluno[*qtdAlunos].matricula);
+        if(feof(fp)){
+            break;
+        }
+        fscanf(fp, "%[^\n]", aluno[*qtdAlunos].name);
+        fscanf(fp, "%f %f %f %f %f",  &aluno[*qtdAlunos].nota1, &aluno[*qtdAlunos].nota2,
+         &aluno[*qtdAlunos].nota3, &aluno[*qtdAlunos].media, &aluno[*qtdAlunos].notaRec);
+        fscanf(fp, "%d", &aluno[*qtdAlunos].situacao);
+        *qtdAlunos += 1;
+    }
+
+    if(fclose(fp) == 0){
+        printf("Dados carregados com sucesso!\n");
+    }else printf("Erro ao carregar dados!\n");
+
+    sleep(1);
+}
+
 int main(){
-    int op, qtdAlunos;
+    int op, qtdAlunos = 0;
     char disciplina[MAX_DISCIPLINA];
     discentes aluno[MAX_ALUNOS];
+    char arq[31];
 
     system(COMMAND);
 
@@ -146,7 +244,7 @@ int main(){
         ApresentaMenu();
         scanf("%d%*c", &op);
 
-        if (op == 6){
+        if (op == 0){
             break;
         }
 
@@ -170,6 +268,21 @@ int main(){
             case 5:
                 system(COMMAND);
                 mostraNotas(aluno, disciplina, qtdAlunos);
+                break;
+            case 6:
+                system(COMMAND);
+                printf("Digite o nome do arquivo para gerar o relatorio: ");
+                scanf("%s", arq);
+                RelatorioEmArquivo(arq, disciplina, aluno, qtdAlunos);
+                break;
+            case 7:
+                system(COMMAND);
+                SalvarDados(aluno, qtdAlunos, disciplina);
+                break;
+            case 8:
+                system(COMMAND);
+                CarregaDados(aluno, &qtdAlunos, disciplina);
+                break;
             default:
                 puts("Opcao Invalida\n");
                 sleep(1);

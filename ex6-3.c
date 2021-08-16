@@ -11,7 +11,7 @@ int main(){
         printf("Os numero digitados foram: %d e %d", num1, num2);
 
     }else{
-        num1 = num1 + num2 ;
+        num1 = num1 + num2;
         num2 = num1 - num2;
         num1 = num1 - num2;
         printf("Os numero digitados foram: %d e %d\n", num1, num2);

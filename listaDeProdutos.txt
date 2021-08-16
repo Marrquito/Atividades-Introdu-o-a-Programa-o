@@ -1,0 +1,20 @@
+Pao
+1 0.85
+Manteiga de garrafa
+2 8.50
+Bolo de chocolate
+3 13.40
+Agua mineral
+4 1.90
+Ovo
+5 0.45
+Pao de queijo
+6 0.89
+Mortadela
+7 11.60
+Leite condensado
+8 7.50
+Pao doce
+9 12.75
+Salsicha
+10 1.25
