@@ -16,13 +16,10 @@ int ResolveEquacao2Grau(float a, float b, float c, float *x0, float *x1, float *
 
     *x2 = (-b - sqrt(*delta) ) / ( 2 * a );
 
-
     if(delta >= 0){
         return 0;
     }
-
 }
-
 
 int main(){
     float a, b, c;
@@ -30,16 +27,13 @@ int main(){
 
     scanf("%f %f %f", &a, &b, &c);
 
-    RsolveEquacao2Grau(a, b, c, &x0, &x1, &x2, &delta);
+    ResolveEquacao2Grau(a, b, c, &x0, &x1, &x2, &delta);
 
     if(delta == 0){
         printf("X1 = %f", x0);
-
     }else if(delta > 0){
-        printf("X1 = %f\n X2 = %f\n", x1, x2);
-
+        printf("X1 = %.2f\nX2 = %.2f\n", x1, x2);
     }
-
 
     return 0;
 }
